@@ -1,6 +1,8 @@
 import {useState} from 'react'
 import './Weather.css'
 import RadioButton from './RadioButton'
+import WeatherDisplay from './WeatherDisplay'
+
 
 function Weather() {
   const [zip, setZip] = useState("33180");
@@ -13,14 +15,24 @@ function Weather() {
         const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apikey}&units=${unit}`;
         const res = await fetch(path)
         const json = await res.json()
-        console.log(json)
+       console.log(json);
+        const temp = json.main.temp
+        const feelsLike = json.main.feels_like
+        const desc = json.weather[0].description
+
+
+        setData({
+            temp,
+            feelsLike,
+            desc
+        })
     }
   // -----------------------------------
 
 
   return (
     <div className="Weather">
-      {data && <h1>{data.temp}</h1>}
+      {data && <WeatherDisplay {...data}/>}
 
       <form
         onSubmit={(e) => {
