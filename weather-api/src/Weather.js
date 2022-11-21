@@ -12,7 +12,7 @@ function Weather() {
   // -----------------------------------
     async function fetchWeather(){
         const apikey = "7e247499e6bbed93c3bd35baf2018838";
-        const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apikey}&units=${unit}`;
+        const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apikey}&units=metric`;
         const res = await fetch(path)
         const json = await res.json()
         const cod = json.cod;
